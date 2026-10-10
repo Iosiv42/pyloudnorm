@@ -209,12 +209,19 @@ class Meter(object):
             self._filters['high_shelf'] = IIRfilter(4.0, 1/np.sqrt(2), 1500.0, self.rate, 'high_shelf')
             self._filters['high_pass'] = IIRfilter(0.0, 0.5, 38.0, self.rate, 'high_pass')
         elif self._filter_class == "Fenton/Lee 1":
-            self._filters['high_shelf'] = IIRfilter(5.0, 1/np.sqrt(2), 1500.0, self.rate, 'high_shelf')
-            self._filters['high_pass'] = IIRfilter(0.0, 0.5, 130.0, self.rate, 'high_pass')
-            self._filters['peaking'] = IIRfilter(0.0, 1/np.sqrt(2), 500.0, self.rate, 'peaking')
-        elif self._filter_class == "Fenton/Lee 2": # not yet implemented
+            self._filters['high_shelf'] = IIRfilter(5.0, 1/np.sqrt(2), 1700.0, self.rate, 'high_shelf')
+            self._filters['high_pass'] = IIRfilter(0.0, 1/2**.5, 130.0, self.rate, 'high_pass')
+            self._filters['peaking'] = IIRfilter(3, 1.1, 500.0, self.rate, 'peaking')
+        elif self._filter_class == "Fenton/Lee 2":
             self._filters['high_self'] = IIRfilter(4.0, 1/np.sqrt(2), 1500.0, self.rate, 'high_shelf')
-            self._filters['high_pass'] = IIRfilter(0.0, 0.5, 38.0, self.rate, 'high_pass')
+            self._filters['high_pass'] = IIRfilter(0.0, 1/2**.5, 38.0, self.rate, 'high_pass')
+            self._filters['peaking_1'] = IIRfilter(3, 2.0, 500.0, self.rate, 'peaking')
+            self._filters['peaking_2'] = IIRfilter(2.1, 10.0, 390.0, self.rate, 'peaking')
+            self._filters['peaking_3'] = IIRfilter(-1.1, 2.0, 360.0, self.rate, 'peaking')
+            self._filters['peaking_4'] = IIRfilter(2.0, 10.0, 650.0, self.rate, 'peaking')
+            self._filters['peaking_5'] = IIRfilter(-1.0, 3.5, 720.0, self.rate, 'peaking')
+            self._filters['peaking_5'] = IIRfilter(1.0, 7.0, 590.0, self.rate, 'peaking')
+            self._filters['peaking_6'] = IIRfilter(1.0, 7.0, 430.0, self.rate, 'peaking')
         elif self._filter_class == "Dash et al.":
             self._filters['high_pass'] = IIRfilter(0.0, 0.375, 149.0, self.rate, 'high_pass')
             self._filters['peaking'] = IIRfilter(-2.93820927, 1.68878655, 1000.0, self.rate, 'peaking')
